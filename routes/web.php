@@ -16,3 +16,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/user', function () {
+    return view('user');
+});
+Route::post('/userdata','UserController@index');
+Route::view('profile','profile');
+Route::view('home','home');
+Route::view('noaccess','noaccess');
+Route::view('csrfexample', 'csrftest');
+Route::post('csrfexample', 'CsrfController@index');
+Route::get('api','ApiController@list');
+
+//Group middleware
+/* Route::group(['middleware' => 'customauth'], function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::get('/user', function () {
+        return view('user');
+    });
+    Route::post('/userdata','UserController@index');
+    Route::view('profile','profile');
+    Route::view('home','home');
+    Route::view('noaccess','noaccess');
+}); */
