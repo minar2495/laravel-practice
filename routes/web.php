@@ -27,6 +27,34 @@ Route::view('csrfexample', 'csrftest');
 Route::post('csrfexample', 'CsrfController@index');
 Route::get('api','ApiController@list');
 
+//session
+Route::view('login','login');
+Route::post('login','LoginController@login');
+Route::view('userprofile','userprofile');
+Route::get('userprofile', function () {
+    if(!session()->has('data')){
+        return redirect('login');
+    }
+    return view('userprofile');
+});
+Route::get('logout', function () {
+  session()->forget('data');
+  return redirect('login');
+});
+
+Route::view('index','index');
+
+Route::get('/change/{lang}', function ($lang) {
+    App::setLocale($lang);
+    return view('index');
+});
+Route::post('upload','UploadFile@store');
+Route::view('upload','uploadexample');
+
+//Database 
+Route::get('db', 'DbController@index');
+
+
 //Group middleware
 /* Route::group(['middleware' => 'customauth'], function () {
     Route::get('/', function () {
