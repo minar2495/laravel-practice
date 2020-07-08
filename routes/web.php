@@ -53,6 +53,14 @@ Route::view('upload','uploadexample');
 
 //Database 
 Route::get('db', 'DbController@index');
+Route::get('userslist','DbController@index');
+
+Route::get('mycontroller','MyController@index');
+
+Route::view('add', 'adduser');
+Route::post('save','UserController@save');
+
+Route::get('mut','MutatorController@index');
 
 
 //Group middleware
@@ -68,3 +76,6 @@ Route::get('db', 'DbController@index');
     Route::view('home','home');
     Route::view('noaccess','noaccess');
 }); */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

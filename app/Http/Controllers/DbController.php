@@ -8,7 +8,7 @@ use Illuminate\support\Facades\DB;
 class DbController extends Controller
 {
     function index(){        
-        return DB::table('users')
+       $data = DB::table('users') 
         // ->insert(
         //     [
         //         "name"=>"priti",
@@ -21,10 +21,17 @@ class DbController extends Controller
         //     "name"=>"priti",
         //     "email"=>"priti123@email.com",
         //     "password"=>"1234"
-        // ]);       
-        // ->count();
-        
+        // ]);                       
         // ->delete();
-        ->get();
+                
+        //Aggregate
+        // ->max('id');
+        // ->count();
+
+        //join
+        // ->join('product','users.id','product.uid')
+        // ->get();
+        ->paginate(2);
+        return view('userslist',['data'=>$data]);
     }
 }
